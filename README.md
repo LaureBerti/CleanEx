@@ -1,2 +1,58 @@
 # CleanEx
 Explaining data cleaning pipelines
+
+.. image:: ./images/cleanex.png
+
+CLeanEX is a solution in Python that can generate explanations for the selected data cleaning pipelines that are generated automatically by an automated cleaning system. Given a large cleaning pipeline search space, CLeanEX propses meaningful explanatory features to describe the pipelines and generate predicate-based explanation rules. 
+It computes quality indicators for these explanations and propose a multi-objective optimization algorithm to select the optimal set of explanations for user-defined objectives. 
+
+Our preliminary experiments show the need for multi-objective optimization for the generation of high-quality explanations that can be either intrinsic to the single selected cleaning pipeline or relative to the other data cleaning and preprocessing pipelines that may not have been selected by the automated cleaning system.
+
+We also show that CLeanEX is a promising step towards generating automatically insightful explanations, while catering to the needs of the user alike.
+
+**For more details**, please refer to the paper: 
+
+- Laure Berti-Equille and Ugo Comignani. Explaining Automated Data Cleaning with CLeanEX. Proceedings of IJCAI-PRICAI 2020 Workshop on Explainable Artificial Intelligence ([XAI](https://sites.google.com/view/xai2020/)). [Preprint](https://drive.google.com/file/d/1s2N7SlxVptn96yfhLJiJnd5RW0JJlGC_/view)
+
+--------------------------
+
+Installation and Usage
+=================
+
+Download or clone CleanEx repo.
+
+To run CleanEX, you can use the following command from your terminal:
+
+``python cleanex.py ./experiments/treeStruct10-4.csv ./experiments/treeFeatures10-5.csv "root" -o ./out.csv -f  "n7" -m "1,0,0,0"
+``
+where:
+* two input files are required and placed in the `./experiments` folder: they  describe the full cleaning pipeline (with all alternative cleaning strategies explored with an automated data curation system): 1) `treeStruct10-4.csv` stores the structure of the cleaning pipeline space represented as a tree, and 2) `treeFeatures10-5.csv` gives the description of each node (or step of each cleaning strategy) with the following headers:
+    - `cost`: The normalized cost of the cleaning strategy
+    - `data quality improvement` (dq_imp): The percentage of data quality problems solved by the pipeline (e.g., remove 100% of missing values by imputation)
+    - `distortion` (dist): The statistical distortion as the Mahalanobis distance between the original and cleaned version of the data set
+    - `satisfaction` (sat): The satisfaction of ML model requirements by the pipeline defined as a Boolean: e.g., for regression, satisfaction equals 1 if linearity, multivariate normality, no or little multicollinearity, no auto-correlation, and homoscedasticity constraints are satisfied by the cleaned data set
+    - `corr_ratio`: The fraction of the number of pipelines sharing the same tasks over the sum of their respective ranks and the total number of explored pipelines, and
+    - `non_corr_ratio`: The fraction of the number of pipelines that do not share the same task over the sum of their respective ranks and the total number of explored pipelines 
+* the output file is `out.csv` with `-o` option
+* the generation of explanations starts from the `root` to the leaf node `n7` (with `-f` option for specifying the final node) 
+* the multi-objective optimization is defined  `1,0,0,0` indicates that the only criterion considered for optimization is *polarity*. 
+
+Cleanex considers four dimensions of quality of explanations: polarity, distancing, surprise, and diversity of the explanations. 
+
+Finally, CleanEx select the optimal explanations of a particular data cleaning strategy and the kind of explanation rules we can obtain are the following:
+```
+P6: succ(root,n7)
+C58: increase(cost,root,n7) /\ delta(cost,root,n7,0.332)
+C71: most([corr_ratio,dq_imp],root)
+C81: least([non_corr_ratio],root)
+C160: least([sat],n7)
+```
+In natural language, the choice of the cleaning pipeline `n7` is best explained by polarity (favouring the extremes): despite its increasing cost of cleaning (C58),  the data quality improvement and the number of common cleaning tasks with other pipelines are maximal (C71), the number of uncommon tasks (C81) and the satisfaction are  minimal (C160).
+
+
+--------------------------
+
+Licence
+=================
+
+Learn2Clean is licensed under the BSD 3-Clause "New" or "Revised" License.
