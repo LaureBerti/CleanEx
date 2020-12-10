@@ -19,9 +19,9 @@ We also show that CLeanEX is a promising step towards generating automatically i
 Installation and Usage
 =================
 
-Download or clone CleanEx repo.
+1. Download or clone CleanEx repo.
 
-To run CleanEX, you can use the following command from your terminal:
+2. To run CleanEX, you can use the following command from your terminal:
 
 ``python cleanex.py ./experiments/treeStruct10-4.csv ./experiments/treeFeatures10-5.csv "root" -o ./out.csv -f  "n7" -m "1,0,0,0"
 ``
@@ -39,6 +39,7 @@ where:
 
 Cleanex considers four dimensions of quality of explanations: polarity, distancing, surprise, and diversity of the explanations. 
 
+3. Check the output file.
 Finally, CleanEx select the optimal explanations of a particular data cleaning strategy and the kind of explanation rules we can obtain are the following:
 ```
 P6: succ(root,n7)
@@ -55,4 +56,4 @@ In natural language, the choice of the cleaning pipeline `n7` is best explained 
 Licence
 =================
 
-Learn2Clean is licensed under the BSD 3-Clause "New" or "Revised" License.
+CLeanEx is licensed under the BSD 2-Clause.
