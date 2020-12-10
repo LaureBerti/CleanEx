@@ -1,7 +1,7 @@
 # CleanEx
 Explaining data cleaning pipelines
 
-.. image:: ./images/cleanex.png
+![CleanEx](./images/cleanex.png)
 
 CLeanEX is a solution in Python that can generate explanations for the selected data cleaning pipelines that are generated automatically by an automated cleaning system. Given a large cleaning pipeline search space, CLeanEX propses meaningful explanatory features to describe the pipelines and generate predicate-based explanation rules. 
 It computes quality indicators for these explanations and propose a multi-objective optimization algorithm to select the optimal set of explanations for user-defined objectives. 
@@ -19,11 +19,11 @@ We also show that CLeanEX is a promising step towards generating automatically i
 Installation and Usage
 =================
 
-1. Download or clone CleanEx repo.
+1. *Download or clone CleanEx repo.*
 
-2. To run CleanEX, you can use the following command from your terminal:
+2. *Run CleanEX* usingthe following commandline from your terminal:
 
-``python cleanex.py ./experiments/treeStruct.csv ./experiments/treeFeatures.csv "root" -o ./experiements/out.csv -f  "n7" -m "1,0,0,0"
+``python cleanex.py ./experiments/treeStruct.csv ./experiments/treeFeatures.csv "root" -o ./experiments/out.csv -f  "n7" -m "1,0,0,0"
 ``
 where:
 * two input files are required and placed in the `./experiments` folder: they  describe the full cleaning pipeline (with all alternative cleaning strategies explored with an automated data curation system): 1) `treeStruct.csv` stores the structure of the cleaning pipeline space represented as a tree, and 2) `treeFeatures.csv` gives the description of each node (or step of each cleaning strategy) with the following headers:
@@ -39,7 +39,7 @@ where:
 
 Cleanex considers four dimensions of quality of explanations: polarity, distancing, surprise, and diversity of the explanations (See our paper for a formal definition of these dimensions). 
 
-3. Check the output file.
+3. *Check the output file.*
 Finally, CleanEx select the optimal explanations of a particular data cleaning strategy and the kind of explanation rules we can obtain are the following:
 ```
 P6: succ(root,n7)
@@ -47,8 +47,9 @@ C58: increase(cost,root,n7) /\ delta(cost,root,n7,0.332)
 C71: most([corr_ratio,dq_imp],root)
 C81: least([non_corr_ratio],root)
 C160: least([sat],n7)
-```
-In natural language, the choice of the cleaning pipeline `n7` is best explained by polarity (favouring the extremes): despite its increasing cost of cleaning (C58),  the data quality improvement and the number of common cleaning tasks with other pipelines are maximal (C71), the number of uncommon tasks (C81) and the satisfaction are  minimal (C160).
+
+
+`Basically, what it means in natural language is that the choice of the cleaning strategy `n7` is best explained by polarity (favouring the extreme explanations): despite the increasing cost of this cleaning strategy (C58),  the data quality improvement and the number of cleaning tasks commonly shared with all the other pipelines are maximal (C71), the number of uncommon tasks (C81) and the satisfaction are minimal (C160).
 
 
 --------------------------
@@ -56,4 +57,4 @@ In natural language, the choice of the cleaning pipeline `n7` is best explained 
 Licence
 =================
 
-CLeanEx is licensed under the BSD 2-Clause.
+CLeanEx and the content of this repository are licensed under the BSD 2-Clause.
