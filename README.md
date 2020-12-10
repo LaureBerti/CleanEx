@@ -19,11 +19,13 @@ We also show that CLeanEX is a promising step towards generating automatically i
 Installation and Usage
 =================
 
-### 1. Download or clone CleanEx repo. 
+#### 1. Download or clone CleanEx repo
 
-### 2. If needed, please install the following packages wiht pip: numpy, scipy, functools, skcriteria, skcriteria.madm, pandas, matplotlib.pyplot, math, os, sys, csv
+#### 2. If needed, please install the required packages 
 
-### 3. Run CleanEX using the following command line from your terminal:
+Using pip: numpy, scipy, functools, skcriteria, skcriteria.madm, pandas, matplotlib.pyplot, math, os, sys, csv
+
+#### 3. Run CleanEX using the following command line from your terminal
 
 ``python cleanex.py ./experiments/treeStruct.csv ./experiments/treeFeatures.csv "root" -o ./experiments/out.csv -f  "n7" -m "1,0,0,0"
 ``
@@ -41,16 +43,18 @@ where:
 
 Cleanex considers four dimensions of quality of explanations: polarity, distancing, surprise, and diversity of the explanations (See our paper for a formal definition of these dimensions). 
 
-### 4. Check the output file.
+#### 4. Check the output file
 
 Finally, CleanEx select the optimal explanations of a particular data cleaning strategy and the kind of explanation rules we can obtain are the following:
+
 ```
 P6: succ(root,n7)
 C58: increase(cost,root,n7) /\ delta(cost,root,n7,0.332)
 C71: most([corr_ratio,dq_imp],root)
 C81: least([non_corr_ratio],root)
 C160: least([sat],n7)
-``
+```
+
 
 Basically, what it means, in natural language is that the choice of the cleaning strategy `n7` is best explained by polarity (favouring the extreme explanations): despite the increasing cost of this cleaning strategy (C58),  the data quality improvement and the number of cleaning tasks commonly shared with all the other pipelines are maximal (C71), the number of uncommon tasks (C81) and the satisfaction are minimal (C160).
 
