@@ -23,21 +23,21 @@ Installation and Usage
 
 2. To run CleanEX, you can use the following command from your terminal:
 
-``python cleanex.py ./experiments/treeStruct10-4.csv ./experiments/treeFeatures10-5.csv "root" -o ./out.csv -f  "n7" -m "1,0,0,0"
+``python cleanex.py ./experiments/treeStruct.csv ./experiments/treeFeatures.csv "root" -o ./experiements/out.csv -f  "n7" -m "1,0,0,0"
 ``
 where:
-* two input files are required and placed in the `./experiments` folder: they  describe the full cleaning pipeline (with all alternative cleaning strategies explored with an automated data curation system): 1) `treeStruct10-4.csv` stores the structure of the cleaning pipeline space represented as a tree, and 2) `treeFeatures10-5.csv` gives the description of each node (or step of each cleaning strategy) with the following headers:
+* two input files are required and placed in the `./experiments` folder: they  describe the full cleaning pipeline (with all alternative cleaning strategies explored with an automated data curation system): 1) `treeStruct.csv` stores the structure of the cleaning pipeline space represented as a tree, and 2) `treeFeatures.csv` gives the description of each node (or step of each cleaning strategy) with the following headers:
     - `cost`: The normalized cost of the cleaning strategy
     - `data quality improvement` (dq_imp): The percentage of data quality problems solved by the pipeline (e.g., remove 100% of missing values by imputation)
     - `distortion` (dist): The statistical distortion as the Mahalanobis distance between the original and cleaned version of the data set
     - `satisfaction` (sat): The satisfaction of ML model requirements by the pipeline defined as a Boolean: e.g., for regression, satisfaction equals 1 if linearity, multivariate normality, no or little multicollinearity, no auto-correlation, and homoscedasticity constraints are satisfied by the cleaned data set
     - `corr_ratio`: The fraction of the number of pipelines sharing the same tasks over the sum of their respective ranks and the total number of explored pipelines, and
     - `non_corr_ratio`: The fraction of the number of pipelines that do not share the same task over the sum of their respective ranks and the total number of explored pipelines 
-* the output file is `out.csv` with `-o` option
+* the output file is `out.csv` in the `./experiment` folder using `-o` option
 * the generation of explanations starts from the `root` to the leaf node `n7` (with `-f` option for specifying the final node) 
 * the multi-objective optimization is defined  `1,0,0,0` indicates that the only criterion considered for optimization is *polarity*. 
 
-Cleanex considers four dimensions of quality of explanations: polarity, distancing, surprise, and diversity of the explanations. 
+Cleanex considers four dimensions of quality of explanations: polarity, distancing, surprise, and diversity of the explanations (See our paper for a formal definition of these dimensions). 
 
 3. Check the output file.
 Finally, CleanEx select the optimal explanations of a particular data cleaning strategy and the kind of explanation rules we can obtain are the following:
