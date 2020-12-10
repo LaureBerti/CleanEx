@@ -50,7 +50,7 @@ C58: increase(cost,root,n7) /\ delta(cost,root,n7,0.332)
 C71: most([corr_ratio,dq_imp],root)
 C81: least([non_corr_ratio],root)
 C160: least([sat],n7)
-``
+```
 
 Basically, what it means, in natural language is that the choice of the cleaning strategy `n7` is best explained by polarity (favouring the extreme explanations): despite the increasing cost of this cleaning strategy (C58),  the data quality improvement and the number of cleaning tasks commonly shared with all the other pipelines are maximal (C71), the number of uncommon tasks (C81) and the satisfaction are minimal (C160).
 
