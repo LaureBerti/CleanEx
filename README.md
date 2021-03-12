@@ -10,7 +10,7 @@ Our preliminary experiments show the need for multi-objective optimization for t
 
 We also show that CLeanEX is a promising step towards generating automatically insightful explanations, while catering to the needs of the user alike.
 
-**For more details**, please refer to the paper: 
+**For more details**, please refer to our paper: 
 
 - Laure Berti-Equille and Ugo Comignani. Explaining Automated Data Cleaning with CLeanEX. Proceedings of IJCAI-PRICAI 2020 Workshop on Explainable Artificial Intelligence ([XAI](https://sites.google.com/view/xai2020/)). [Preprint](https://drive.google.com/file/d/1s2N7SlxVptn96yfhLJiJnd5RW0JJlGC_/view)
 
