@@ -5,12 +5,12 @@
 
 CLeanEX is a solution implemented in Python that can generate explanations for the selected data cleaning pipelines that are generated automatically by an automated cleaning system. Given a large cleaning pipeline search space, CLeanEX propses meaningful explanatory features to describe the pipelines and generate predicate-based explanation rules. 
 It computes quality indicators for these explanations and propose a multi-objective optimization algorithm to select the optimal set of explanations for user-defined objectives. 
-
+ 
 Our preliminary experiments show the need for multi-objective optimization for the generation of high-quality explanations that can be either intrinsic to the single selected cleaning pipeline or relative to the other data cleaning and preprocessing pipelines that may not have been selected by the automated cleaning system.
 
 We also show that CLeanEX is a promising step towards generating automatically insightful explanations, while catering to the needs of the user alike.
 
-**For more details**, please refer to our paper: 
+**For more details**, please refer to our paper:  
 
 - Laure Berti-Equille and Ugo Comignani. Explaining Automated Data Cleaning with CLeanEX. Proceedings of IJCAI-PRICAI 2020 Workshop on Explainable Artificial Intelligence ([XAI](https://sites.google.com/view/xai2020/)). [Preprint](https://drive.google.com/file/d/1s2N7SlxVptn96yfhLJiJnd5RW0JJlGC_/view)
 
